@@ -1,155 +1,134 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Sports Leagues</title>
-	</head>
-	<body>
-
-	<h1>1. - Todas las ligas de baseball</h1>
-	
-		{% for league in leagues_baseball %}
-			<li>{{league.name}}</li>
-		{% endfor %}
+<h1>------------------------------------------------------------------------------------</h1>
+<h1>SPORT ORM II</h1>
+<h1>------------------------------------------------------------------------------------</h1>
 
 
-	<h1>2. - Todas las ligas de mujeres</h1>
+<h1>1. Find all teams in the Atlantic Soccer Conference</h1>
 
-	<ul>
-		{% for league in leagues_womans %}
-			<li>{{league.name}}</li>
-		{% endfor %}
-	</ul>
+<ol>
+	{% for league in orm21 %}
+		<li>{{league.team_name}}</li>
+	{% endfor %}
+</ol>
 
-	<h1>3. - Todas las ligas donde el deporte es cualquier tipo de hockey</h1>
+<h1>2. Find all (current) players on the Boston Penguins</h1>
 
-	<ul>
-		{% for league in leagues_hockey %}
-			<li>{{league.name}}</li>
-		{% endfor %}
-	</ul>
-
-	<h1>4. - Todas las ligas donde el deporte no sea football</h1>
-
-	<ul>
-		{% for league in leagues_nofootball %}
-			<li>{{league.name}}</li>
-		{% endfor %}
-	</ul>
-
-	<h1>5. - Todas las ligas que se llaman "conferencias"</h1>
-
-	<ul>
-		{% for league in leagues_conference %}
-			<li>{{league.name}}</li>
-		{% endfor %}
-	</ul>
-
-	<h1>6. - Todas las ligas de la región atlántica</h1>
-
-	<ul>
-		{% for league in leagues_atlantics %}
-			<li>{{league.name}}</li>
-		{% endfor %}
-	</ul>
-
-	<h1>7. - Todos los equipos con sede en Dallas</h1>
-
-	<ul>
-		{% for teams in teams_dallas %}
-			<li>{{teams.team_name}}</li>
-		{% endfor %}
-	</ul>
-
-	<h1>8. - Todos los equipos nombraron los Raptors</h1>
-
-	<ul>
-		{% for teams in teams_raptors %}
-			<li>{{teams.location}} {{teams.team_name}}</li>
-		{% endfor %}
-	</ul>
+<ol>
+	{% for player in orm22 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
 
 
-	<h1>9. - Todos los equipos cuya ubicación incluye "Ciudad"</h1>
+<h1>3. Find all (current) players in the International Collegiate Baseball Conference</h1>
 
-	<ul>
-		{% for teams in teams_raptors %}
-			<li>{{teams.location}} {{teams.team_name}}</li>
-		{% endfor %}
-	</ul>
+<ol>
+	{% for player in orm23 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
+
+
+<h1>4. Find all (current) players in the American Conference of Amateur Football with last name "Lopez" </h1>
+
+<ol>
+	{% for player in orm24 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
+
+
+<h1>5. Find all football players</h1>
+
+<ol>
+	{% for player in orm25 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
+
+
+<h1>6. Find all teams with a (current) player named "Sophia"</h1>
+
+<ol>
+	{% for team in orm26 %}
+		<li>{{team.team_name}}</li>
+	{% endfor %}
+</ol>
 
 
 
-	<h1>10. - Todos los equipos cuyos nombres comienzan con "T"</h1>
+<h1>7. Find all leagues with a (current) player named "Sophia"</h1>
 
-	<ul>
-		{% for teams in teams_t %}
-			<li>{{teams.team_name}}</li>
-		{% endfor %}
-	</ul>
+<ol>
+	{% for league in orm27 %}
+		<li>{{league.name}}</li>
+	{% endfor %}
+</ol>
+
+<h1>8. Find everyone with the last name "Flores" who DOESN'T (currently) play for the Washington Roughriders</h1>
+
+<ol>
+	{% for player in orm28 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
+
+<h1>9. Find all teams, past and present, that Samuel Evans has played with</h1>
+
+<ol>
+	{% for team in orm29 %}
+		<li>{{team.location}} {{team.team_name}}</li>
+	{% endfor %}
+</ol>
+
+<h1>10. Find all players, past and present, with the Manitoba Tiger-Cats</h1>
+
+<ol>
+	{% for player in orm210 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
+
+<h1>11. Find all players who were formerly (but aren't currently) with the Wichita Vikings</h1>
+
+<ol>
+	{% for player in orm211 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
+
+<h1>12. Find every team that Jacob Gray played for before he joined the Oregon Colts</h1>
+
+<ol>
+	{% for team in orm212 %}
+		<li>{{team.location}} {{team.team_name}}</li>
+	{% endfor %}
+</ol>
+
+<h1>13. Find everyone named "Joshua" who has ever played in the Atlantic Federation of Amateur Baseball Players</h1>
+
+<ol>
+	{% for player in orm213 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
+
+<h1>14. Find all teams that have had 12 or more players, past and present.  (HINT: Look up the Django `annotate` function.)</h1>
+
+<ol>
+	{% for team in orm214 %}
+		<li>{{team.location}} {{team.team_name}}</li>
+	{% endfor %}
+</ol>
+
+<h1>15. Show all players, sorted by the number of teams they've played for</h1>
 
 
-
-	<h1>11. - Todos los equipos, ordenados alfabéticamente por ubicación</h1>
-
-	<ul>
-		{% for teams in teams_alfa %}
-			<li>{{teams.location}} {{teams.team_name}}</li>
-		{% endfor %}
-	</ul>
-
-
-
-	<h1>12. - Todos los equipos, ordenados por nombre de equipo en orden alfabético inverso</h1>
-
-	<ul>
-		{% for teams in teams_alfarev %}
-			<li>{{teams.location}} {{teams.team_name}}</li>
-		{% endfor %}
-	</ul>
-
-
-
-
-	<h1>13. - Cada jugador con apellido "Cooper"</h1>
-
-	<ul>
-		{% for player in jcooper %}
-			<li>{{player.first_name}} {{player.last_name}}</li>
-		{% endfor %}
-	</ul>
-
-
-
-
-	<h1>14. - Cada jugador con nombre "Joshua"</h1>
-
-	<ul>
-		{% for player in jjoshua %}
-			<li>{{player.first_name}} {{player.last_name}}</li>
-		{% endfor %}
-	</ul>
-
-
-
-
-	<h1>15. - Todos los jugadores con el apellido "Cooper" EXCEPTO aquellos con "Joshua" como primer nombre</h1>
-
-	<ul>
-		{% for player in jcooperexjosh %}
-			<li>{{player.first_name}} {{player.last_name}}</li>
-		{% endfor %}
-	</ul>
-
-
-	<h1>16. - Todos los jugadores con nombre "Alexander" O nombre "Wyatt"</h1>
-
-	<ul>
-		<ul>
-			{% for player in alexorwyatt %}
-				<li>{{player.first_name}} {{player.last_name}}</li>
-			{% endfor %}
-		</ul>
-	</ul>
+<ol>
+	{% for player in orm215 %}
+		<li>{{player.first_name}} {{player.last_name}}</li>
+	{% endfor %}
+</ol>
 
 
 
@@ -157,16 +136,10 @@
 
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 
 <h1>------------------------------------------------------------------------------------</h1>
-
 		<h1>Leagues</h1>
 		<ol>
 			{% for league in leagues %}

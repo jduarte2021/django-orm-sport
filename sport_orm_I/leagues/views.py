@@ -17,6 +17,7 @@ def index(request):
 		'leagues_atlantics' : League.objects.filter(name__contains="atlantic"),
 		'teams_dallas' : Team.objects.filter(location__contains="dalla"),
 		'teams_raptors' : Team.objects.filter(team_name__contains="raptors"),
+		'teams_city': Team.objects.filter(location__contains="city"),
 		'teams_t' : Team.objects.filter(team_name__startswith="t"),
 		'teams_alfa' : Team.objects.order_by('location'),
 		'teams_alfarev' : Team.objects.order_by('-location'),

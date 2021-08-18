@@ -1,30 +1,32 @@
 from django.shortcuts import render, redirect
 from .models import League, Team, Player
+from django.db.models import Count
 
 
 from . import team_maker
 
 def index(request):
+	
 	context = {
+		
 		"leagues": League.objects.all(),
 		"teams": Team.objects.all(),
 		"players": Player.objects.all(),
-		'leagues_baseball' : League.objects.filter(name__contains="baseball"),
-		'leagues_womans' : League.objects.filter(name__contains="Women"),
-		'leagues_hockey' : League.objects.filter(name__contains="hockey"),
-		'leagues_nofootball' : League.objects.exclude(name__contains="Football"),
-		'leagues_conference' : League.objects.filter(name__contains="conference"),
-		'leagues_atlantics' : League.objects.filter(name__contains="atlantic"),
-		'teams_dallas' : Team.objects.filter(location__contains="dalla"),
-		'teams_raptors' : Team.objects.filter(team_name__contains="raptors"),
-		'teams_t' : Team.objects.filter(team_name__startswith="t"),
-		'teams_alfa' : Team.objects.order_by('location'),
-		'teams_alfarev' : Team.objects.order_by('-location'),
-		'jcooper' : Player.objects.filter(last_name__contains="Cooper"),
-		'jjoshua' : Player.objects.filter(first_name__contains="Joshua"),
-		'jcooperexjosh' : Player.objects.filter(last_name__contains="Cooper").exclude(first_name__contains="Joshua"),
-		'alexorwyatt' : Player.objects.filter(first_name__contains="Alex")|Player.objects.filter(first_name__contains="Wyatt")
-
+		"orm21": Team.objects.filter(league__name="Atlantic Soccer Conference"),
+		"orm22": Player.objects.filter(curr_team=Team.objects.get(location="Boston", team_name="Penguins")),
+		"orm23": Player.objects.filter(curr_team__in=Team.objects.filter(league__in=(League.objects.filter(name__contains="International Collegiate Baseball Conference")))),
+		"orm24": Player.objects.filter(curr_team__in=Team.objects.filter(league__in=(League.objects.filter(name__contains="American Conference of Amateur Football")))) & Player.objects.filter(last_name ="Lopez"),
+		"orm25": Player.objects.filter(curr_team__in=Team.objects.filter(league__in=(League.objects.filter(name__contains="Football")))),
+		"orm26": Team.objects.filter(curr_players__in=Player.objects.filter(first_name ="Sophia")),
+		"orm27": League.objects.filter(teams__in=Team.objects.filter(curr_players__in=Player.objects.filter(first_name ="Sophia"))),
+		"orm28": Player.objects.filter(last_name ="Flores").exclude(curr_team=Team.objects.get(location="Washington", team_name="Roughriders")),
+		"orm29": Team.objects.filter(all_players__in=Player.objects.filter(first_name ="Samuel")),
+		"orm210": Player.objects.filter(all_teams=Team.objects.get(location="Manitoba", team_name="Tiger-Cats")),
+		"orm211": Player.objects.filter(all_teams=Team.objects.get(team_name="Vikings",location="Wichita")).exclude(curr_team=Team.objects.get(team_name="Vikings",location="Wichita")),
+		"orm212": Team.objects.filter(all_players__in=Player.objects.filter(first_name ="Jacob",last_name="Gray")).exclude(team_name="Colts",location="Oregon"),
+		"orm213": Player.objects.filter(first_name ="Joshua") & Player.objects.filter(curr_team__in=Team.objects.filter(league__in=(League.objects.filter(name__contains="International Collegiate Baseball Conference")))),
+		"orm214": Team.objects.annotate(jugadores=Count('all_players')).filter(jugadores__gte = 12),
+		"orm215": Player.objects.annotate(numero_teams=Count('all_teams')).order_by('numero_teams'),
 		
 	}
 	return render(request, "leagues/index.html", context)
